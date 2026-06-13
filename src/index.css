@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Theme palette — light (default) and dark (night) modes.
+   The app's `C` object maps each colour to one of these CSS
+   variables, so toggling `data-theme="dark"` on <html> repaints
+   the whole UI. `--c-brand*` stay dark teal in BOTH themes
+   (header / nav / primary buttons).
+   ============================================================ */
+:root {
+  --c-bg: #F2F4F4;
+  --c-surface: #FFFFFF;
+  --c-brand: #15323B;
+  --c-brand-soft: #2C4A53;
+  --c-ink: #15323B;
+  --c-ink-soft: #2C4A53;
+  --c-amber: #E8930C;
+  --c-amber-soft: #FBEED7;
+  --c-amber-text: #9A6206;
+  --c-line: #DDE4E5;
+  --c-muted: #5C6B70;
+  --c-green: #1F8A5B;
+  --c-green-soft: #E3F2EA;
+  --c-red: #C9403A;
+  --c-red-soft: #FAE7E6;
+  --c-input: #FBFCFC;
+  --c-subtle: #F7F9F9;
+  --c-track: #EDF1F1;
+}
+
+:root[data-theme="dark"] {
+  --c-bg: #0E1A1F;
+  --c-surface: #15262C;
+  --c-brand: #1B3A43;
+  --c-brand-soft: #26505B;
+  --c-ink: #E6EDEF;
+  --c-ink-soft: #AFC0C4;
+  --c-amber: #F0A52A;
+  --c-amber-soft: #3A2D12;
+  --c-amber-text: #F0A52A;
+  --c-line: #2A3C42;
+  --c-muted: #8C9DA2;
+  --c-green: #4FB985;
+  --c-green-soft: #152C22;
+  --c-red: #E2756E;
+  --c-red-soft: #3A1F1D;
+  --c-input: #122026;
+  --c-subtle: #122026;
+  --c-track: #22343B;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+}

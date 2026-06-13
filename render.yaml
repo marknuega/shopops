@@ -1,0 +1,28 @@
+# Render Blueprint — one free web service that runs the ShopOps API and serves
+# the built frontend on the same URL. Reachable from anywhere, 24/7.
+#
+# How Render uses this:
+#   1. Push this repo to GitHub (see deploy/MANAGED-CLOUD.md).
+#   2. Render Dashboard -> New -> Blueprint -> pick the repo. It reads this file.
+#   3. Set DATABASE_URL (from Neon) when prompted; JWT_SECRET is auto-generated.
+#
+# Note: the free plan sleeps after ~15 min idle; the first request then takes
+# ~50s to wake. Fine for a back-office. Upgrade the plan to keep it always-on.
+services:
+  - type: web
+    name: shopops
+    runtime: node
+    plan: free
+    region: singapore # closest Render region to the Philippines
+    # Install frontend + server deps, then build the frontend (VITE_MOCK=false
+    # comes from .env.production, so the bundle talks to the real database).
+    buildCommand: npm install && npm run build && npm install --prefix server
+    startCommand: node server/src/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false # paste your Neon connection string in the Render dashboard
+      - key: JWT_SECRET
+        generateValue: true # Render makes a long random secret for you
+      - key: NODE_VERSION
+        value: "20"
