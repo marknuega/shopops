@@ -9,7 +9,8 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "db:setup": "node src/setup.js",
-    "db:seed": "node src/seed.js"
+    "db:seed": "node src/seed.js",
+    "db:demo": "node src/seed-demo.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
